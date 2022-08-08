@@ -8,7 +8,7 @@ import time
 from datetime import datetime
 
 url = "https://www.smartmetertexas.com"
-
+#---The only important stuff---#
 
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features")
@@ -47,7 +47,7 @@ def meterPull():
     
     
     return meterUsage.text
-
+#---The only important stuff---#
 
 def timeCheck():
     time = ''
