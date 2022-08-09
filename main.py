@@ -1,21 +1,17 @@
+
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 import time
 from datetime import datetime
 
 url = "https://www.smartmetertexas.com"
-#---The only important stuff---#
 
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-blink-features")
 options.add_argument("--disable-blink-features=AutomationControlled")
 
-
-driver = webdriver.Chrome("C:\Program Files (x86)\chromedriver.exe", options=options)
+driver = webdriver.Chrome("C:\Program Files (x86)\chromedriver.exe", chrome_options=options)
 
 s = Service(executable_path="C:\Program Files (x86)\chromedriver.exe")
 
@@ -24,18 +20,20 @@ s = Service(executable_path="C:\Program Files (x86)\chromedriver.exe")
 
 
 def meterPull():
+    print('test')
     driver.get(url)
     time.sleep(5)
     driver.implicitly_wait(10)
-
+    print('test')
     #---Login Page---#
     username = driver.find_element(by=By.ID, value = "userid")
     password = driver.find_element(by=By.ID, value = "password")
     login = driver.find_element(by=By.XPATH, value = '//*[@id="loginform"]/div[8]/button')
-
+    print('test')
     username.send_keys('username')
     password.send_keys('password')
     login.click()
+    print('test')
     #---Login Page---#
     time.sleep(5)
     #---Dashboard---#
@@ -45,9 +43,9 @@ def meterPull():
     
     meterUsage = driver.find_element(by=By.XPATH, value = '//*[@id="wrapper"]/div[2]/main/div/div[5]/div[1]/div/div[2]/div[2]/div/div[2]/div[3]/div[2]')
     
-    
+    driver.close()
     return meterUsage.text
-#---The only important stuff---#
+
 
 def timeCheck():
     time = ''
